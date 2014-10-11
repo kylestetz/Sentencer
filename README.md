@@ -1,5 +1,7 @@
 # Sentencer
 
+[![Build Status](https://travis-ci.org/kylestetz/Sentencer.svg?branch=master)](https://travis-ci.org/kylestetz/Sentencer)
+
 `sentencer` is a tool for generating sentences. It is a simple templating engine that accepts strings with actions embedded in them:
 
 ```javascript
