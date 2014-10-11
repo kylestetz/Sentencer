@@ -86,7 +86,7 @@ describe('Sentencer', function() {
       });
 
       it('{{ secondNewAction }}', function(){
-        assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello again');
+        assert.equal(Sentencer.make('{{ secondNewAction }}'), 'hello again');
       });
 
     });
