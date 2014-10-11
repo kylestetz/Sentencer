@@ -1,6 +1,7 @@
 {
   "name": "Sentencer",
   "version": "0.1.0",
+  "description": "Sentencer is a string templating engine for madlibs-style sentence generating.",
   "scripts": {
     "start": "node index.js",
     "test": "gulp test"
@@ -15,5 +16,14 @@
     "gulp": "~3.8.8",
     "gulp-mocha": "~1.1.0"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "keywords": [
+    "sentences",
+    "sentence",
+    "random",
+    "madlibs",
+    "metaphorpsum"
+  ],
+  "author": "Kyle Stetz",
+  "license": "MIT"
 }
