@@ -1,0 +1,15 @@
+{
+  "name": "Sentencer",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "lingo": "~0.0.5",
+    "articles": "~0.2.1",
+    "randy": "~1.5.1"
+  },
+  "main": "app.js"
+}
