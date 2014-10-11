@@ -1,5 +1,5 @@
 {
-  "name": "Sentencer",
+  "name": "sentencer",
   "version": "0.1.1",
   "description": "Sentencer is a string templating engine for madlibs-style sentence generating.",
   "scripts": {
