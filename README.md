@@ -54,6 +54,8 @@ Sentencer.configure({
 
 `Sentencer` works by recognizing "actions" within `{{ double_brackets }}`. It replaces these actions with strings. The default actions are `{{ noun }}`, `{{ a_noun }}`, `{{ nouns }}`, `{{ adjective }}`, and `{{ an_adjective }}`, but you can extend `Sentencer` to include any kind of actions you need!
 
+The default actions will continue to work if you pass in new a `nounList` and/or `adjectiveList` using `Sentencer.configure`.
+
 `Sentencer`'s actions are written semantically so that your sentence template still reads as a sentence. While this was simply a design decision, it does make templates easier to read and you are encouraged to follow this format if you create custom actions.
 
 #### `"{{ noun }}"`
