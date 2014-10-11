@@ -14,7 +14,7 @@ Where each action returns a random string selected from a list:
 
 Think of it as madlibs for Javascript. Want to roll your own lorem ipsum generator? `Sentencer` allows you to write the structure of your sentences and plug in any kind of vocabulary you choose.
 
-`Sentencer` was written for and powers [Metaphorpsum](http://metaphorpsum.com).
+`Sentencer` was written for and powers [Metaphorpsum](http://metaphorpsum.com). The noun and adjective lists come from a relatively small curated selection of Ashley Bovan's excellent [Word Lists for Writers](http://www.ashley-bovan.co.uk/words/partsofspeech.html).
 
 ### How
 
@@ -35,8 +35,10 @@ var Sentencer = require('sentencer');
 Sentencer.configure({
   // the list of nouns to use. Sentencer provides its own if you don't have one!
   nounList: [],
+
   // the list of adjectives to use. Again, Sentencer comes with one!
   adjectiveList: [],
+
   // additional actions for the template engine to use.
   // you can also redefine the preset actions here if you need to.
   // See the "Add your own actions" section below.
