@@ -40,80 +40,80 @@ describe('Sentencer', function() {
       assert(Sentencer.configure);
     });
 
-    // it('should merge a new action', function() {
-    //   Sentencer.configure({
-    //     actions: {
-    //       firstNewAction: function() { return 'hello'; }
-    //     }
-    //   });
+    it('should merge a new action', function() {
+      Sentencer.configure({
+        actions: {
+          firstNewAction: function() { return 'hello'; }
+        }
+      });
 
-    //   assert.equal(newSentencer.actions.firstNewAction(), 'hello');
-    // });
+      assert.equal(Sentencer.actions.firstNewAction(), 'hello');
+    });
 
-    // it('should accept another action merge later', function() {
-    //   Sentencer.configure({
-    //     actions: {
-    //       secondNewAction: function() { return 'hello again'; }
-    //     }
-    //   });
+    it('should accept another action merge later', function() {
+      Sentencer.configure({
+        actions: {
+          secondNewAction: function() { return 'hello again'; }
+        }
+      });
 
-    //   assert.equal(newSentencer.actions.firstNewAction(), 'hello', 'first action still exists');
-    //   assert.equal(newSentencer.actions.secondNewAction(), 'hello again', 'second action exists as well');
-    // });
+      assert.equal(Sentencer.actions.firstNewAction(), 'hello', 'first action still exists');
+      assert.equal(Sentencer.actions.secondNewAction(), 'hello again', 'second action exists as well');
+    });
 
-    // it('should include a `make` function', function() {
-    //   assert(Sentencer.make);
-    // });
+    it('should include a `make` function', function() {
+      assert(Sentencer.make);
+    });
 
   });
 
-  // describe('Templating', function() {
+  describe('Templating', function() {
 
-  //   describe('Default Actions', function() {
+    describe('Default Actions', function() {
 
-  //     it('{{ noun }}', function(){  assert(Sentencer.make('{{ noun }}'));  });
-  //     it('{{ a_noun }}', function(){  assert(Sentencer.make('{{ a_noun }}'));  });
-  //     it('{{ nouns }}', function(){  assert(Sentencer.make('{{ nouns }}'));  });
-  //     it('{{ adjective }}', function(){  assert(Sentencer.make('{{ adjective }}'));  });
-  //     it('{{ an_adjective }}', function(){  assert(Sentencer.make('{{ an_adjective }}'));  });
+      it('{{ noun }}', function(){  assert(Sentencer.make('{{ noun }}'));  });
+      it('{{ a_noun }}', function(){  assert(Sentencer.make('{{ a_noun }}'));  });
+      it('{{ nouns }}', function(){  assert(Sentencer.make('{{ nouns }}'));  });
+      it('{{ adjective }}', function(){  assert(Sentencer.make('{{ adjective }}'));  });
+      it('{{ an_adjective }}', function(){  assert(Sentencer.make('{{ an_adjective }}'));  });
 
-  //   });
+    });
 
-  //   describe('Custom Actions', function() {
+    describe('Custom Actions', function() {
 
-  //     it('{{ firstNewAction }}', function(){
-  //       assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello');
-  //     });
+      it('{{ firstNewAction }}', function(){
+        assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello');
+      });
 
-  //     it('{{ secondNewAction }}', function(){
-  //       assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello again');
-  //     });
+      it('{{ secondNewAction }}', function(){
+        assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello again');
+      });
 
-  //   });
+    });
 
-  //   describe('Custom Actions With Arguments', function() {
+    describe('Custom Actions With Arguments', function() {
 
-  //     Sentencer.configure({
-  //       actions: {
-  //         withArgument: function(number) {
-  //           return number;
-  //         },
-  //         withArguments: function() {
-  //           return arguments.length;
-  //         }
-  //       }
-  //     });
+      Sentencer.configure({
+        actions: {
+          withArgument: function(number) {
+            return number;
+          },
+          withArguments: function() {
+            return arguments.length;
+          }
+        }
+      });
 
-  //     it('should allow an action with one argument', function() {
-  //       assert.equal( Sentencer.make('{{ withArgument(1) }}'), '1' );
-  //     });
+      it('should allow an action with one argument', function() {
+        assert.equal( Sentencer.make('{{ withArgument(1) }}'), '1' );
+      });
 
-  //     it('should allow an action with multiple arguments', function() {
-  //       assert.equal( Sentencer.make('{{ withArguments(1,2,3) }}'), '3' );
-  //     });
+      it('should allow an action with multiple arguments', function() {
+        assert.equal( Sentencer.make('{{ withArguments(1,2,3) }}'), '3' );
+      });
 
-  //   });
+    });
 
-  // });
+  });
 
 });
