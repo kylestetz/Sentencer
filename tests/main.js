@@ -2,7 +2,7 @@ var assert = require("assert");
 
 var Sentencer = require('../index.js');
 
-describe('Sentencer', function() {
+describe('Sentencer:', function() {
 
   it('should exist', function() {
     assert(Sentencer);
@@ -10,7 +10,7 @@ describe('Sentencer', function() {
 
   describe('Default', function() {
 
-    describe('Words', function() {
+    describe('# Words', function() {
 
       it('should include a list of nouns', function() {
         assert(Sentencer._nouns.length);
@@ -22,7 +22,7 @@ describe('Sentencer', function() {
 
     });
 
-    describe('Actions', function() {
+    describe('# Actions', function() {
 
       it('should include `noun`', function() { assert(Sentencer.actions.noun); });
       it('should include `a_noun`', function() { assert(Sentencer.actions.a_noun); });
@@ -69,7 +69,7 @@ describe('Sentencer', function() {
 
   describe('Templating', function() {
 
-    describe('Default Actions', function() {
+    describe('# Default Actions', function() {
 
       it('{{ noun }}', function(){  assert(Sentencer.make('{{ noun }}'));  });
       it('{{ a_noun }}', function(){  assert(Sentencer.make('{{ a_noun }}'));  });
@@ -79,7 +79,7 @@ describe('Sentencer', function() {
 
     });
 
-    describe('Custom Actions', function() {
+    describe('# Custom Actions', function() {
 
       it('{{ firstNewAction }}', function(){
         assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello');
@@ -91,7 +91,7 @@ describe('Sentencer', function() {
 
     });
 
-    describe('Custom Actions With Arguments', function() {
+    describe('# Custom Actions With Arguments', function() {
 
       Sentencer.configure({
         actions: {
