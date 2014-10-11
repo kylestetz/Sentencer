@@ -12,9 +12,9 @@ Where each action returns a random string selected from a list:
 "This is a bankrupt sentence."
 ```
 
-Think of it as madlibs for Javascript. Want to roll your own lorem ipsum generator? `sentencer` allows you to write the structure of your sentences and plug in any kind of vocabulary you choose.
+Think of it as madlibs for Javascript. Want to roll your own lorem ipsum generator? `Sentencer` allows you to write the structure of your sentences and plug in any kind of vocabulary you choose.
 
-`Sentencer` was written for and powers [Metaphorpsum](http://metaphorpsum).
+`Sentencer` was written for and powers [Metaphorpsum](http://metaphorpsum.com).
 
 ### How
 
@@ -39,6 +39,7 @@ Sentencer.configure({
   adjectiveList: [],
   // additional actions for the template engine to use.
   // you can also redefine the preset actions here if you need to.
+  // See the "Add your own actions" section below.
   actions: {
     my_action: function(){
       return "something";
@@ -53,7 +54,7 @@ Sentencer.configure({
 
 `Sentencer`'s actions are written semantically so that your sentence template still reads as a sentence. While this was simply a design decision, it does make templates easier to read and you are encouraged to follow this format if you create custom actions.
 
-#### `{{ noun }}`
+#### `"{{ noun }}"`
 
 Returns a random noun from the noun list.
 
@@ -62,7 +63,7 @@ var noun = Sentencer.make("{{ noun }}")
 // "actor", "knight", "orchid", "pizza", etc.
 ```
 
-#### `{{ a_noun }}`
+#### `"{{ a_noun }}"`
 
 Returns a random noun from the noun list with "a" or "an" in front of it.
 
@@ -71,7 +72,7 @@ var nounWithArticle = Sentencer.make("{{ a_noun }}")
 // "an actor", "a knight", "an orchid", "a pizza", etc.
 ```
 
-#### `{{ nouns }}`
+#### `"{{ nouns }}"`
 
 Returns the pluralized form of a random noun from the noun list. It's not 100% perfect, but it's probably 97% perfect.
 
@@ -80,7 +81,7 @@ var pluralNoun = Sentencer.make("{{ nouns }}")
 // "actors", "knights", "orchids", "pizzas", etc.
 ```
 
-#### `{{ adjective }}`
+#### `"{{ adjective }}"`
 
 Returns a random adjective from the adjective list.
 
@@ -89,7 +90,7 @@ var adjective = Sentencer.make("{{ adjective }}")
 // "blending", "earthy", "rugged", "untamed", etc.
 ```
 
-#### `{{ an_adjective }}`
+#### `"{{ an_adjective }}"`
 
 Returns a random adjective from the adjective list with "a" or "an" in front of it.
 
@@ -144,6 +145,6 @@ A technical note: if `Sentencer` finds that you have provided arguments to your 
 
 Verb pluralization, singularization, and tense modification are difficult computer science problems. `Sentencer` doesn't aim to solve those problems, however _present tense_ verb pluralization/singularization is an experimental feature of [`natural`](https://github.com/NaturalNode/natural) and could be integrated if necessary.
 
-## -----------
+-----------
 
-`Sentencer` was created and is maintained by [Kyle Stetz](https://github.com/kylestetz). The original prototype came out of [Metaphorpsum](http://metaphorpsum.com) ([github]([Metaphorpsum](https://github.com/kylestetz/metaphorpsum))) but has been rewritten from the ground up.
+`Sentencer` was created and is maintained by [Kyle Stetz](https://github.com/kylestetz). The original prototype came out of [Metaphorpsum]([Metaphorpsum](https://github.com/kylestetz/metaphorpsum) but has been rewritten from the ground up.
