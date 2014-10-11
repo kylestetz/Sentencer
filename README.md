@@ -147,4 +147,4 @@ Verb pluralization, singularization, and tense modification are difficult comput
 
 -----------
 
-`Sentencer` was created and is maintained by [Kyle Stetz](https://github.com/kylestetz). The original prototype came out of [Metaphorpsum]([Metaphorpsum](https://github.com/kylestetz/metaphorpsum) but has been rewritten from the ground up.
+`Sentencer` was created and is maintained by [Kyle Stetz](https://github.com/kylestetz). The original prototype came out of [Metaphorpsum](https://github.com/kylestetz/metaphorpsum) but has been rewritten from the ground up.
