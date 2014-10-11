@@ -47,6 +47,29 @@ function Sentencer() {
 
 Sentencer.prototype.make = function(template) {
   var self = this;
+
+  var sentence = template;
+  var occurrences = template.match(/\{\{(.+?)\}\}/g);
+
+  if(occurrences && occurrences.length) {
+    for(var i = 0; i < occurrences.length; i++) {
+      var action = occurrences[i].replace('{{', '').replace('}}', '').replace(/\s/g, '');
+      var result = '';
+      if(action.match(/\((.+?)\)/)) {
+        try {
+          result = eval('self.actions.' + action);
+        }
+        catch(e) { }
+      } else {
+        if(!self.actions[action]) {
+          throw new Error('Sentencer: the action ' + action + ' does not exist! Add it with `Sentencer.configure`.');
+        }
+        result = self.actions[action]();
+      }
+      sentence = sentence.replace(occurrences[i], result);
+    }
+  }
+  return sentence;
 };
 
 // ---------------------------------------------
