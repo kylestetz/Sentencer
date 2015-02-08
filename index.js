@@ -61,10 +61,11 @@ Sentencer.prototype.make = function(template) {
         }
         catch(e) { }
       } else {
-        if(!self.actions[action]) {
-          throw new Error('Sentencer: the action ' + action + ' does not exist! Add it with `Sentencer.configure`.');
+        if(self.actions[action]) {
+          result = self.actions[action]();
+        } else {
+          result = '{{ ' + action + ' }}';
         }
-        result = self.actions[action]();
       }
       sentence = sentence.replace(occurrences[i], result);
     }

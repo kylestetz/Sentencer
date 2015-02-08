@@ -89,10 +89,8 @@ describe('Sentencer:', function() {
         assert.equal(Sentencer.make('{{ secondNewAction }}'), 'hello again');
       });
 
-      it('should Error if an action does not exist', function(){
-        assert.throws( function() {
-          Sentencer.make('{{ nonexistantThing }}');
-        }, Error);
+      it('should return {{ action }} if it does not exist', function(){
+        assert.equal( Sentencer.make('{{ nonexistantThing }}'), '{{ nonexistantThing }}');
       });
 
     });
