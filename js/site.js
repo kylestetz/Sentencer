@@ -9,7 +9,7 @@ $( function() {
 
   function renderText(template, spooky) {
     $.post(
-      'http://localhost:3000/' + (spooky ? 'spooky' : 'sentencer'),
+      'http://kylestetz.com/' + (spooky ? 'spooky' : 'sentencer'),
       { template: template },
       function(data) {
         $output.html(data);
