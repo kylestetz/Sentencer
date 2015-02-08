@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sentencer.js</title>
+    <meta name="description" content="Sentencer is a node module for madlibs-style sentence templating in Javascript.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/site.css">
+    <script></script>
+  </head>
+  <body>
+    <div class="content">
+      <div class="block demo">
+        <div class="inner">
+          <div class="sentencer-logo"></div>
+          <div class="space"></div>
+          <div class="text">
+            <div class="half">
+              <div class="textarea editable" data-input contenteditable="true">This is {{ an_adjective }} {{ noun }}.</div>
+              <div class="tooltip">Try {{adjective}}, {{an_adjective}}, {{noun}}, {{a_noun}}, and {{nouns}}.</div>
+            </div><!--
+         --><div class="half red textarea" data-output></div>
+            <div class="space"></div>
+            <div class="center">
+              <div class="render" data-render>Sentence</div><br /><div class="render spooky" data-spooky-render>Spooky Sentence</div>
+            </div>
+            <div class="space"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="markdown block">
+        <div class="inner">
+          <!-- /////////////////////////////////////////////////////// -->
+          <div id="readme"><h1 id="sentencer">Sentencer</h1>
+<p><a href="https://travis-ci.org/kylestetz/Sentencer"><img src="https://travis-ci.org/kylestetz/Sentencer.svg?branch=master" alt="Build Status"></a></p>
+<p><code>sentencer</code> is a tool for generating sentences. It is a simple templating engine that accepts strings with actions embedded in them:</p>
+<pre><code class="lang-javascript">&quot;This is {{ an_adjective }} sentence.&quot;
+</code></pre>
+<p>Where each action returns a random string selected from a list:</p>
+<pre><code class="lang-javascript">&quot;This is a bankrupt sentence.&quot;
+</code></pre>
+<p>Think of it as madlibs for Javascript. Want to roll your own lorem ipsum generator? <code>Sentencer</code> allows you to write the structure of your sentences and plug in any kind of vocabulary you choose.</p>
+<p><code>Sentencer</code> was written for and powers <a href="http://metaphorpsum.com">Metaphorpsum</a>. The noun and adjective lists come from a relatively small curated selection of Ashley Bovan&apos;s excellent <a href="http://www.ashley-bovan.co.uk/words/partsofspeech.html">Word Lists for Writers</a>.</p>
+<h3 id="how">How</h3>
+<p><code>npm install sentencer --save</code></p>
+<pre><code class="lang-javascript">var Sentencer = require(&apos;sentencer&apos;);
+
+Sentencer.make(&quot;This sentence has {{ a_noun }} and {{ an_adjective }} {{ noun }} in it.&quot;);
+// returns something like &quot;This sentence has a bat and a finless cinema in it.&quot;
+</code></pre>
+<p>Here are all of the options, described in detail below.</p>
+<pre><code class="lang-javascript">var Sentencer = require(&apos;sentencer&apos;);
+
+Sentencer.configure({
+  // the list of nouns to use. Sentencer provides its own if you don&apos;t have one!
+  nounList: [],
+
+  // the list of adjectives to use. Again, Sentencer comes with one!
+  adjectiveList: [],
+
+  // additional actions for the template engine to use.
+  // you can also redefine the preset actions here if you need to.
+  // See the &quot;Add your own actions&quot; section below.
+  actions: {
+    my_action: function(){
+      return &quot;something&quot;;
+    }
+  }
+});
+</code></pre>
+<h3 id="actions">Actions</h3>
+<p><code>Sentencer</code> works by recognizing &quot;actions&quot; within <code>{{ double_brackets }}</code>. It replaces these actions with strings. The default actions are <code>{{ noun }}</code>, <code>{{ a_noun }}</code>, <code>{{ nouns }}</code>, <code>{{ adjective }}</code>, and <code>{{ an_adjective }}</code>, but you can extend <code>Sentencer</code> to include any kind of actions you need!</p>
+<p>The default actions will continue to work if you pass in new a <code>nounList</code> and/or <code>adjectiveList</code> using <code>Sentencer.configure</code>.</p>
+<p><code>Sentencer</code>&apos;s actions are written semantically so that your sentence template still reads as a sentence. While this was simply a design decision, it does make templates easier to read and you are encouraged to follow this format if you create custom actions.</p>
+<h4 id="-noun-"><code>&quot;{{ noun }}&quot;</code></h4>
+<p>Returns a random noun from the noun list.</p>
+<pre><code class="lang-javascript">var noun = Sentencer.make(&quot;{{ noun }}&quot;)
+// &quot;actor&quot;, &quot;knight&quot;, &quot;orchid&quot;, &quot;pizza&quot;, etc.
+</code></pre>
+<h4 id="-a_noun-"><code>&quot;{{ a_noun }}&quot;</code></h4>
+<p>Returns a random noun from the noun list with &quot;a&quot; or &quot;an&quot; in front of it.</p>
+<pre><code class="lang-javascript">var nounWithArticle = Sentencer.make(&quot;{{ a_noun }}&quot;)
+// &quot;an actor&quot;, &quot;a knight&quot;, &quot;an orchid&quot;, &quot;a pizza&quot;, etc.
+</code></pre>
+<h4 id="-nouns-"><code>&quot;{{ nouns }}&quot;</code></h4>
+<p>Returns the pluralized form of a random noun from the noun list. It&apos;s not 100% perfect, but it&apos;s probably 97% perfect.</p>
+<pre><code class="lang-javascript">var pluralNoun = Sentencer.make(&quot;{{ nouns }}&quot;)
+// &quot;actors&quot;, &quot;knights&quot;, &quot;orchids&quot;, &quot;pizzas&quot;, etc.
+</code></pre>
+<h4 id="-adjective-"><code>&quot;{{ adjective }}&quot;</code></h4>
+<p>Returns a random adjective from the adjective list.</p>
+<pre><code class="lang-javascript">var adjective = Sentencer.make(&quot;{{ adjective }}&quot;)
+// &quot;blending&quot;, &quot;earthy&quot;, &quot;rugged&quot;, &quot;untamed&quot;, etc.
+</code></pre>
+<h4 id="-an_adjective-"><code>&quot;{{ an_adjective }}&quot;</code></h4>
+<p>Returns a random adjective from the adjective list with &quot;a&quot; or &quot;an&quot; in front of it.</p>
+<pre><code class="lang-javascript">var adjective = Sentencer.make(&quot;{{ an_adjective }}&quot;)
+// &quot;a blending&quot;, &quot;an earthy&quot;, &quot;a rugged&quot;, &quot;an untamed&quot;, etc.
+</code></pre>
+<h3 id="add-your-own-actions">Add your own actions</h3>
+<p>When configuring <code>Sentencer</code> you can provide your own &quot;actions&quot;, which are just functions that return something. The name of the function that you pass into <code>actions</code> is how you will reference it within a sentence template.</p>
+<p>Here&apos;s an example of an action that returns a random number from 1 to 10.</p>
+<pre><code class="lang-javascript">var Sentencer = require(&apos;sentencer&apos;);
+
+Sentencer.configure({
+  actions: {
+    number: function() {
+      return Math.floor( Math.random() * 10 ) + 1;
+    }
+  }
+});
+
+console.log( Sentencer.make(&quot;I can count to {{ number }}.&quot;)
+// &quot;I can count to 5.&quot;
+</code></pre>
+<h4 id="actions-can-take-arguments">Actions can take arguments</h4>
+<p>You can pass arguments into your actions. We can use this to make a smarter version of the random number generator above...</p>
+<pre><code class="lang-javascript">var Sentencer = require(&apos;sentencer&apos;);
+
+Sentencer.configure({
+  actions: {
+    number: function(min, max) {
+      return Math.floor( Math.random() * (max - min) ) + min;
+    }
+  }
+});
+
+console.log( Sentencer.make(&quot;I can count to {{ number(8, 10) }}.&quot;)
+// &quot;I can count to 8.&quot;
+</code></pre>
+<p>A technical note: if <code>Sentencer</code> finds that you have provided arguments to your action it will use <code>eval</code> in order to call it. It will <code>try</code>/<code>catch</code> this in case it fails, but one definite limitation is that your action can&apos;t contain characters that would force you to use <code>object[&quot;property&quot;]</code> notation. For example, <code>&quot;{{ my-custom-action(3) }}&quot;</code> would fail, whereas <code>&quot;{{ my_custom_action(3) }}&quot;</code> would succeed.</p>
+<h3 id="where-are-the-verbs-">Where are the verbs?</h3>
+<p>Verb pluralization, singularization, and tense modification are difficult computer science problems. <code>Sentencer</code> doesn&apos;t aim to solve those problems, however <em>present tense</em> verb pluralization/singularization is an experimental feature of <a href="https://github.com/NaturalNode/natural"><code>natural</code></a> and could be integrated if necessary.</p>
+<hr>
+<p><code>Sentencer</code> was created and is maintained by <a href="https://github.com/kylestetz">Kyle Stetz</a>. The original prototype came out of <a href="https://github.com/kylestetz/metaphorpsum">Metaphorpsum</a> but has been rewritten from the ground up.</p>
+</div>
+          <!-- /////////////////////////////////////////////////////// -->
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="block">
+      <div class="inner">
+        <p>Built by <a href="https://github.com/kylestetz">Kyle Stetz</a>. Logo by <a href="https://dribbble.com/mattgoold">Matt Goold</a>.</p>
+      </div>
+    </footer>
+
+    <script src="js/components/jquery/dist/jquery.min.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/site.js"></script>
+
+   <!--  <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script> -->
+  </body>
+</html>

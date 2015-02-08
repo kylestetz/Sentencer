@@ -1,0 +1,122 @@
+.demo
+{
+  background-color: @blue;
+  color: white;
+  font-family: "Fira Mono";
+  font-size: 18px;
+
+  min-height: 96vh;
+
+  .inner
+  {
+    max-width: 1160px;
+  }
+}
+
+.sentencer-logo
+{
+  width: 166px;
+  height: 173px;
+  margin: 0 auto;
+
+  background-image: url('/images/sentencer-logo.png');
+  background-size: 166px 173px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.textarea
+{
+  padding: 1rem;
+
+  border-radius: 2px;
+  border: 2px solid transparent;
+}
+
+.editable
+{
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+
+  font-family: "Fira Mono";
+  font-size: 18px;
+  color: white;
+
+  transition: border-color 0.15s;
+
+  resize: none;
+
+  &::after
+  {
+    content: 'Edit this text.';
+    display: block;
+    position: absolute;
+    top: ~'calc(100% - 2.25em)';
+    color: fade(white, 20%);
+    opacity: 1;
+    transition: opacity 0.15s;
+  }
+
+  &:focus
+  {
+    outline: none;
+    box-shadow: none;
+    border-color: white;
+    &::after { opacity: 0; }
+  }
+
+  &:focus + .tooltip
+  {
+    opacity: 1;
+  }
+}
+
+.tooltip
+{
+  margin-top: 1em;
+
+  font-size: 10px;
+  line-height: 1.25em;
+  text-align: center;
+
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.render
+{
+  display: inline-block;
+  min-width: 230px;
+
+  margin: 0 auto;
+  margin-bottom: 1em;
+  padding: 0.1em 1.25em;
+
+  color: @red;
+  text-align: center;
+
+  border: 2px solid @red;
+  border-radius: 2px;
+
+  .noselect;
+  transition: color 0.08s;
+
+  &.inactive
+  {
+    opacity: 0.5;
+  }
+
+  &:not(.inactive):hover
+  {
+    cursor: pointer;
+    color: white;
+  }
+
+  &.spooky
+  {
+    color: fade(white, 20%);
+    border-color: fade(white, 20%);
+  }
+}

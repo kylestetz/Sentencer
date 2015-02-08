@@ -1,0 +1,5 @@
+{
+  "directory": "js/components/",
+  "analytics": false,
+  "timeout": 120000
+}

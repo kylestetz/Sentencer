@@ -1,0 +1,21 @@
+{
+  "name": "sentencer-demo",
+  "version": "0.1.1",
+  "homepage": "https://github.com/kylestetz/sentencer",
+  "authors": [
+    "Kyle Stetz <kyle@punkave.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}
