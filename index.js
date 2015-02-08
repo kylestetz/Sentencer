@@ -39,6 +39,12 @@ function Sentencer() {
     self._nouns      = options.nounList || self._nouns;
     self._adjectives = options.adjectiveList || self._adjectives;
   };
+
+  self.use = function(options) {
+    var newInstance = new Sentencer();
+    newInstance.configure(options);
+    return newInstance;
+  };
 }
 
 // ---------------------------------------------
