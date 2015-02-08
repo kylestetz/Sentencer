@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Fira+Mono:400,700);
 html,
 body,
 div,
@@ -160,7 +162,7 @@ html {
  */
 code,
 pre {
-  font-family: "Fira Mono";
+  font-family: "Fira Mono", "Menlo", monospace;
   font-weight: 400;
   border-radius: 2px;
   font-size: 16px;
@@ -170,7 +172,15 @@ code:not([class]) {
   margin: 0 0.2em;
   background-color: #f9f9f9;
   color: #363554;
-  font-weight: 500;
+  font-weight: 400;
+}
+h1 code:not([class]),
+h2 code:not([class]),
+h3 code:not([class]),
+h4 code:not([class]),
+h5 code:not([class]),
+h6 code:not([class]) {
+  font-weight: 700;
 }
 code[class*="language-"],
 pre[class*="language-"] {
@@ -292,7 +302,7 @@ pre[class*="language-"] {
 }
 body,
 html {
-  font-family: "Open Sans";
+  font-family: "Open Sans", "Helvetica", sans-serif;
   font-size: 18px;
   line-height: 1.75em;
   letter-spacing: 0.03em;
@@ -313,7 +323,7 @@ h5,
 h6 {
   margin-top: 1em;
   margin-bottom: 1em;
-  font-weight: bold;
+  font-weight: 700;
 }
 h1 {
   font-size: 36px;
@@ -424,7 +434,7 @@ footer.block a:hover::after {
   width: 166px;
   height: 173px;
   margin: 0 auto;
-  background-image: url('/images/sentencer-logo.png');
+  background-image: url('sentencer-logo.png');
   background-size: 166px 173px;
   background-position: center;
   background-repeat: no-repeat;
