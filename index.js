@@ -53,7 +53,7 @@ Sentencer.prototype.make = function(template) {
 
   if(occurrences && occurrences.length) {
     for(var i = 0; i < occurrences.length; i++) {
-      var action = occurrences[i].replace('{{', '').replace('}}', '').replace(/\s/g, '');
+      var action = occurrences[i].replace('{{', '').replace('}}', '').trim();
       var result = '';
       if(action.match(/\((.+?)\)/)) {
         try {

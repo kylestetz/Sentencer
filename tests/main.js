@@ -90,7 +90,7 @@ describe('Sentencer:', function() {
       });
 
       it('should return {{ action }} if it does not exist', function(){
-        assert.equal( Sentencer.make('{{ nonexistantThing }}'), '{{ nonexistantThing }}');
+        assert.equal( Sentencer.make('{{ nonexistant thing }}'), '{{ nonexistant thing }}');
       });
 
     });
