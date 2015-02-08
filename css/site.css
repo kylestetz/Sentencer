@@ -399,6 +399,9 @@ html {
 .space {
   height: 7rem;
 }
+.space.small {
+  height: 4rem;
+}
 .center {
   text-align: center;
 }
