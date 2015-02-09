@@ -174,6 +174,9 @@ code:not([class]) {
   color: #363554;
   font-weight: 400;
 }
+a code:not([class]) {
+  color: #ff4848;
+}
 h1 code:not([class]),
 h2 code:not([class]),
 h3 code:not([class]),
@@ -369,7 +372,8 @@ a {
   color: #ff4848;
   text-decoration: none;
 }
-.no-tap a::after {
+.no-tap a::after,
+.no-tap a:focus::after {
   content: '';
   display: block;
   position: absolute;
@@ -381,8 +385,18 @@ a {
   transition: background-color 0.15s;
   pointer-events: none;
 }
-.no-tap a:hover::after {
+.no-tap a:not(.render):focus {
+  background-color: white;
+  outline: none;
+  box-shadow: none;
+}
+.no-tap a:hover::after,
+.no-tap a:focus::after {
   background-color: #ff4848;
+}
+.no-tap .demo a:not(.render):focus,
+.no-tap footer.block a:not(.render):focus {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 hr {
   margin: 2rem 0;
@@ -459,7 +473,8 @@ footer.block p {
 footer.block a {
   color: white;
 }
-footer.block a:hover::after {
+footer.block a:hover::after,
+footer.block a:focus::after {
   background-color: white;
 }
 .demo {
@@ -511,15 +526,18 @@ footer.block a:hover::after {
     top: calc(100% - 3em);
   }
 }
-.editable:focus {
+.editable:focus,
+.no-tap .editable:hover {
   outline: none;
   box-shadow: none;
   border-color: white;
 }
-.editable:focus::after {
+.editable:focus::after,
+.no-tap .editable:hover::after {
   opacity: 0;
 }
-.editable:focus + .tooltip {
+.editable:focus + .tooltip,
+.no-tap .editable:hover + .tooltip {
   opacity: 1;
 }
 .tooltip {
@@ -563,12 +581,19 @@ footer.block a:hover::after {
   color: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.2);
 }
-.no-tap .render:not(.inactive):hover {
+.no-tap .render:not(.inactive):hover,
+.no-tap .render:focus {
   cursor: pointer;
   color: white;
+  box-shadow: none;
+  outline: none;
 }
-.no-tap .render:not(.inactive):hover::after {
+.no-tap .render:not(.inactive):hover::after,
+.no-tap .render:focus::after {
   display: none;
+}
+.no-tap .render:focus {
+  border-color: white;
 }
 .tap .render:active {
   color: white;

@@ -58,10 +58,9 @@ a
 {
   position: relative;
   color: @red;
-  // font-weight: bold;
   text-decoration: none;
 
-  .no-tap &::after
+  .no-tap &::after, .no-tap &:focus::after
   {
     content: '';
     display: block;
@@ -75,10 +74,24 @@ a
     pointer-events: none;
   }
 
-  .no-tap &:hover::after
+  .no-tap &:not(.render):focus
+  {
+    background-color: white;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .no-tap &:hover::after, .no-tap &:focus::after
   {
     background-color: @red;
   }
+}
+
+// color modifications
+.no-tap .demo a:not(.render):focus,
+.no-tap footer.block a:not(.render):focus
+{
+  background-color: fade(white, 20%);
 }
 
 hr

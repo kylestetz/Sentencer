@@ -64,7 +64,7 @@
     }
   }
 
-  &:focus
+  &:focus, .no-tap &:hover
   {
     outline: none;
     box-shadow: none;
@@ -72,7 +72,7 @@
     &::after { opacity: 0; }
   }
 
-  &:focus + .tooltip
+  &:focus + .tooltip, .no-tap &:hover + .tooltip
   {
     opacity: 1;
   }
@@ -128,11 +128,18 @@
     border-color: fade(white, 20%);
   }
 
-  .no-tap &:not(.inactive):hover
+  .no-tap &:not(.inactive):hover, .no-tap &:focus
   {
     cursor: pointer;
     color: white;
     &::after { display: none; }
+    box-shadow: none;
+    outline: none;
+  }
+
+  .no-tap &:focus
+  {
+    border-color: white;
   }
 
   .tap &:active
