@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sentencer.js</title>
     <meta name="description" content="Sentencer is a node module for madlibs-style sentence templating in Javascript.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="css/site.css">
     <script></script>
   </head>
@@ -20,13 +22,13 @@
               <div class="textarea editable" data-input contenteditable="true">This is {{ an_adjective }} {{ noun }}.</div>
               <div class="tooltip">Try {{adjective}}, {{an_adjective}}, {{noun}}, {{a_noun}}, and {{nouns}}.</div>
             </div><!--
-         --><div class="half red textarea" data-output></div>
+         --><div class="half red textarea output" data-output></div>
             <div class="space"></div>
             <div class="center">
-              <div class="render" data-render>Sentence</div><br /><div class="render spooky" data-spooky-render>Spooky Sentence</div>
+              <a class="render" href="javascript:void(0);" ontouchstart="return true;" data-render>Sentence</a><br /><a class="render spooky" href="javascript:void(0);" ontouchstart="return true;" data-spooky-render>Spooky Sentence</a>
             </div>
             <div class="space small"></div>
-            <p class="center"> <a href="https://github.com/kylestetz/Sentencer">View Sentencer on GitHub</a></p>
+            <p class="center"><a class="white" href="https://github.com/kylestetz/Sentencer">View Sentencer on GitHub</a></p>
           </div>
         </div>
       </div>

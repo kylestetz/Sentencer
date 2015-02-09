@@ -165,7 +165,7 @@ pre {
   font-family: "Fira Mono", "Menlo", monospace;
   font-weight: 400;
   border-radius: 2px;
-  font-size: 16px;
+  font-size: 0.88888889rem;
 }
 code:not([class]) {
   padding: 0.0em 0.3em;
@@ -300,12 +300,30 @@ pre[class*="language-"] {
 .red {
   color: #ff4848;
 }
+.white {
+  color: white;
+}
+.no-tap a.white:hover::after {
+  background-color: white;
+}
 body,
 html {
   font-family: "Open Sans", "Helvetica", sans-serif;
   font-size: 18px;
   line-height: 1.75em;
   letter-spacing: 0.03em;
+}
+@media (max-width: 800px) {
+  body,
+  html {
+    font-size: 16px;
+  }
+}
+@media (max-width: 500px) {
+  body,
+  html {
+    font-size: 14px;
+  }
 }
 *::selection {
   background: #e2e2e2;
@@ -326,22 +344,22 @@ h6 {
   font-weight: 700;
 }
 h1 {
-  font-size: 36px;
+  font-size: 2rem;
 }
 h2 {
-  font-size: 32px;
+  font-size: 1.77777778rem;
 }
 h3 {
-  font-size: 30px;
+  font-size: 1.66666667rem;
 }
 h4 {
-  font-size: 28px;
+  font-size: 1.55555556rem;
 }
 h5 {
-  font-size: 20px;
+  font-size: 1.11111111rem;
 }
 h6 {
-  font-size: 18px;
+  font-size: 1rem;
 }
 p {
   margin-bottom: 1em;
@@ -351,7 +369,7 @@ a {
   color: #ff4848;
   text-decoration: none;
 }
-a::after {
+.no-tap a::after {
   content: '';
   display: block;
   position: absolute;
@@ -363,7 +381,7 @@ a::after {
   transition: background-color 0.15s;
   pointer-events: none;
 }
-a:hover::after {
+.no-tap a:hover::after {
   background-color: #ff4848;
 }
 hr {
@@ -387,9 +405,20 @@ html {
   margin-left: 1%;
   margin-right: 0;
 }
+@media (max-width: 800px) {
+  .half {
+    width: 100%;
+    margin: 0;
+  }
+}
 .block {
   width: 100%;
   padding: 3rem;
+}
+@media (max-width: 500px) {
+  .block {
+    padding: 1rem;
+  }
 }
 .inner {
   width: 100%;
@@ -399,8 +428,18 @@ html {
 .space {
   height: 7rem;
 }
+@media (max-width: 500px) {
+  .space {
+    height: 3rem;
+  }
+}
 .space.small {
   height: 4rem;
+}
+@media (max-width: 500px) {
+  .space.small {
+    height: 2rem;
+  }
 }
 .center {
   text-align: center;
@@ -427,7 +466,7 @@ footer.block a:hover::after {
   background-color: #222135;
   color: white;
   font-family: "Fira Mono";
-  font-size: 18px;
+  font-size: 1rem;
   min-height: 96vh;
 }
 .demo .inner {
@@ -453,7 +492,7 @@ footer.block a:hover::after {
   outline: none;
   box-shadow: none;
   font-family: "Fira Mono";
-  font-size: 18px;
+  font-size: 1rem;
   color: white;
   transition: border-color 0.15s;
   resize: none;
@@ -466,6 +505,11 @@ footer.block a:hover::after {
   color: rgba(255, 255, 255, 0.2);
   opacity: 1;
   transition: opacity 0.15s;
+}
+@media (max-width: 500px) {
+  .editable::after {
+    top: calc(100% - 3em);
+  }
 }
 .editable:focus {
   outline: none;
@@ -480,11 +524,17 @@ footer.block a:hover::after {
 }
 .tooltip {
   margin-top: 1em;
-  font-size: 10px;
+  font-size: 0.55555556rem;
   line-height: 1.25em;
   text-align: center;
   opacity: 0;
   transition: opacity 0.15s;
+}
+.output {
+  transition: opacity 0.1s;
+}
+.output.dim {
+  opacity: 0.5;
 }
 .render {
   display: inline-block;
@@ -502,17 +552,28 @@ footer.block a:hover::after {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.render.no-tap {
   transition: color 0.08s;
 }
 .render.inactive {
   opacity: 0.5;
 }
-.render:not(.inactive):hover {
-  cursor: pointer;
-  color: white;
-}
 .render.spooky {
   color: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.2);
+}
+.no-tap .render:not(.inactive):hover {
+  cursor: pointer;
+  color: white;
+}
+.no-tap .render:not(.inactive):hover::after {
+  display: none;
+}
+.tap .render:active {
+  color: white;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  border-color: white;
 }
 /*# sourceMappingURL=site.css.map */

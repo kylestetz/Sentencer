@@ -3,7 +3,7 @@
   background-color: @blue;
   color: white;
   font-family: "Fira Mono";
-  font-size: 18px;
+  font-size: 1rem;
 
   min-height: 96vh;
 
@@ -41,7 +41,7 @@
   box-shadow: none;
 
   font-family: "Fira Mono";
-  font-size: 18px;
+  font-size: 1rem;
   color: white;
 
   transition: border-color 0.15s;
@@ -57,6 +57,11 @@
     color: fade(white, 20%);
     opacity: 1;
     transition: opacity 0.15s;
+
+    @media @smallest
+    {
+      top: ~'calc(100% - 3em)';
+    }
   }
 
   &:focus
@@ -77,12 +82,21 @@
 {
   margin-top: 1em;
 
-  font-size: 10px;
+  font-size: (10px/18px) * 1rem;
   line-height: 1.25em;
   text-align: center;
 
   opacity: 0;
   transition: opacity 0.15s;
+}
+
+.output
+{
+  transition: opacity 0.1s;
+  &.dim
+  {
+    opacity: 0.5;
+  }
 }
 
 .render
@@ -101,22 +115,31 @@
   border-radius: 2px;
 
   .noselect;
-  transition: color 0.08s;
+  &.no-tap { transition: color 0.08s; }
 
   &.inactive
   {
     opacity: 0.5;
   }
 
-  &:not(.inactive):hover
-  {
-    cursor: pointer;
-    color: white;
-  }
-
   &.spooky
   {
     color: fade(white, 20%);
     border-color: fade(white, 20%);
+  }
+
+  .no-tap &:not(.inactive):hover
+  {
+    cursor: pointer;
+    color: white;
+    &::after { display: none; }
+  }
+
+  .tap &:active
+  {
+    color: white;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    border-color: white;
   }
 }

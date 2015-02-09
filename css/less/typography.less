@@ -8,6 +8,16 @@ body,html
   font-size: 18px;
   line-height: 1.75em;
   letter-spacing: 0.03em;
+
+  @media @compact
+  {
+    font-size: 16px;
+  }
+
+  @media @smallest
+  {
+    font-size: 14px;
+  }
 }
 
 *
@@ -27,12 +37,12 @@ h1,h2,h3,h4,h5,h6
   font-weight: 700;
 }
 
-h1 { font-size: 36px; }
-h2 { font-size: 32px; }
-h3 { font-size: 30px; }
-h4 { font-size: 28px; }
-h5 { font-size: 20px; }
-h6 { font-size: 18px; }
+h1 { font-size: (36px/18px) * 1rem; }
+h2 { font-size: (32px/18px) * 1rem; }
+h3 { font-size: (30px/18px) * 1rem; }
+h4 { font-size: (28px/18px) * 1rem; }
+h5 { font-size: (20px/18px) * 1rem; }
+h6 { font-size: 1rem; }
 
 p
 {
@@ -51,7 +61,7 @@ a
   // font-weight: bold;
   text-decoration: none;
 
-  &::after
+  .no-tap &::after
   {
     content: '';
     display: block;
@@ -65,7 +75,7 @@ a
     pointer-events: none;
   }
 
-  &:hover::after
+  .no-tap &:hover::after
   {
     background-color: @red;
   }

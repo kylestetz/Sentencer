@@ -15,12 +15,22 @@ body,html
     margin-left: 1%;
     margin-right: 0;
   }
+
+  @media @compact
+  {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .block
 {
   width: 100%;
   padding: 3rem;
+  @media @smallest
+  {
+    padding: 1rem;
+  }
 }
 
 .inner
@@ -33,7 +43,19 @@ body,html
 .space
 {
   height: 7rem;
-  &.small { height: 4rem; }
+  @media @smallest
+  {
+    height: 3rem;
+  }
+
+  &.small {
+    height: 4rem;
+
+    @media @smallest
+    {
+      height: 2rem;
+    }
+  }
 }
 
 .center
