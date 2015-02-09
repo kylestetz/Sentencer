@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kylestetz/Sentencer.svg?branch=master)](https://travis-ci.org/kylestetz/Sentencer)
 
-`sentencer` is a tool for generating sentences. It is a simple templating engine that accepts strings with actions embedded in them:
+`sentencer` is a node.js module for madlibs-style sentence templating. It is a simple templating engine that accepts strings with actions embedded in them:
 
 ```javascript
 "This is {{ an_adjective }} sentence."
