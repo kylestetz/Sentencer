@@ -1,6 +1,6 @@
 var natural = require('natural');
 var nounInflector = new natural.NounInflector();
-var articles = require('./node_modules/articles/lib/Articles.js');
+var articles = require('articles/lib/Articles.js');
 var randy = require('randy');
 var _ = require('lodash');
 
