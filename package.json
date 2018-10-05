@@ -7,14 +7,14 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
-    "natural": "~0.1.28",
     "articles": "~0.2.1",
+    "lodash": "^4.17.11",
+    "natural": "~0.1.28",
     "randy": "~1.5.1"
   },
   "devDependencies": {
-    "gulp": "~3.8.8",
-    "gulp-mocha": "~1.1.0"
+    "gulp": "^4.0.0",
+    "gulp-mocha": "^6.0.0"
   },
   "main": "index.js",
   "keywords": [

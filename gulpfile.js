@@ -7,6 +7,6 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 
 gulp.task('test', function () {
-  gulp.src('tests/main.js', { read: false })
-    .pipe( mocha({ }) );
+  return gulp.src('tests/main.js', { read: false })
+    .pipe( mocha({ }) )
 });
