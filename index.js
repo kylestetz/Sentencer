@@ -51,7 +51,8 @@ function Sentencer() {
 //                  THE GOODS
 // ---------------------------------------------
 
-Sentencer.prototype.make = function(template, maxIterations = 1) {
+Sentencer.prototype.make = function(template, maxIterations) {
+  maxIterations = maxIterations || 1;
   var self = this;
 
   var sentence = template;
