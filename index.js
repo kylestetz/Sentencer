@@ -51,30 +51,33 @@ function Sentencer() {
 //                  THE GOODS
 // ---------------------------------------------
 
-Sentencer.prototype.make = function(template) {
+Sentencer.prototype.make = function(template, maxIterations = 1) {
   var self = this;
 
   var sentence = template;
-  var occurrences = template.match(/\{\{(.+?)\}\}/g);
-
-  if(occurrences && occurrences.length) {
-    for(var i = 0; i < occurrences.length; i++) {
-      var action = occurrences[i].replace('{{', '').replace('}}', '').trim();
-      var result = '';
-      if(action.match(/\((.+?)\)/)) {
-        try {
-          result = eval('self.actions.' + action);
-        }
-        catch(e) { }
-      } else {
-        if(self.actions[action]) {
-          result = self.actions[action]();
+  for(var j = 0; j < maxIterations; j++) {
+    var occurrences = sentence.match(/\{\{(.+?)\}\}/g);
+  
+    if(occurrences && occurrences.length) {
+      for(var i = 0; i < occurrences.length; i++) {
+        var action = occurrences[i].replace('{{', '').replace('}}', '').trim();
+        var result = '';
+        if(action.match(/\((.+?)\)/)) {
+          try {
+            result = eval('self.actions.' + action);
+          }
+          catch(e) { }
         } else {
-          result = '{{ ' + action + ' }}';
+          if(self.actions[action]) {
+            result = self.actions[action]();
+          } else {
+            result = '{{ ' + action + ' }}';
+          }
         }
+        sentence = sentence.replace(occurrences[i], result);
       }
-      sentence = sentence.replace(occurrences[i], result);
     }
+    else break;
   }
   return sentence;
 };
