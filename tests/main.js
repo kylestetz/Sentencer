@@ -122,8 +122,35 @@ describe('Sentencer:', function() {
 
     });
 
+    describe('# Recursive variable expansion', function() {
+
+      Sentencer.configure({
+        actions: {
+          recurse1: function() {
+            return "recurse1 ({{ recurse2 }})";
+          },
+          recurse2: function() {
+            return "recurse2 ({{ recurse3 }})";
+          },
+          recurse3: function() {
+            return "hello world";
+          }
+        }
+      });
+
+      it('should not contain variables with sufficient depth', function() {
+        assert.equal( Sentencer.make('{{ recurse1 }}',3), 'recurse1 (recurse2 (hello world))' );
+      });
+
+      it('should contain variables if depth is insufficient', function() {
+        assert.equal( Sentencer.make('{{ recurse1 }}',2), 'recurse1 (recurse2 ({{ recurse3 }}))' );
+      });
+
+    });
+
   });
 
+  
   describe('Test Print', function() {
 
     it('should have logged a sentence', function() {
