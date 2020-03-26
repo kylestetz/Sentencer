@@ -61,11 +61,22 @@ Sentencer.prototype.make = function(template) {
     for(var i = 0; i < occurrences.length; i++) {
       var action = occurrences[i].replace('{{', '').replace('}}', '').trim();
       var result = '';
-      if(action.match(/\((.+?)\)/)) {
-        try {
-          result = eval('self.actions.' + action);
+      var actionIsFunctionCall = action.match(/^\w+\((.+?)\)$/);
+
+      if(actionIsFunctionCall) {
+        var actionNameWithParens = action.match(/^(\w+)\(/);
+        var actionName = actionNameWithParens[1];
+        var actionExists = self.actions[actionName];
+        var actionContents = action.match(/\((.+?)\)/);
+        actionContents = actionContents && actionContents[1];
+
+        if (actionExists && actionContents) {
+          try {
+            var args = _.map(actionContents.split(','), maybeCastToNumber);
+            result = self.actions[actionName].apply(null, args);
+          }
+          catch(e) { }
         }
-        catch(e) { }
       } else {
         if(self.actions[action]) {
           result = self.actions[action]();
@@ -78,6 +89,11 @@ Sentencer.prototype.make = function(template) {
   }
   return sentence;
 };
+
+function maybeCastToNumber(input) {
+  var trimmedInput = input.trim();
+  return !Number.isNaN(Number(trimmedInput)) ? Number(trimmedInput) : trimmedInput;
+}
 
 // ---------------------------------------------
 //                    DONE

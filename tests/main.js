@@ -109,15 +109,44 @@ describe('Sentencer:', function() {
       });
 
       it('should allow an action with one argument', function() {
-        assert.equal( Sentencer.make('{{ withArgument(1) }}'), '1' );
+        assert.equal( Sentencer.make('{{ withArgument(1) }}'), 1 );
       });
 
       it('should allow an action with multiple arguments', function() {
-        assert.equal( Sentencer.make('{{ withArguments(1,2,3) }}'), '3' );
+        assert.equal( Sentencer.make('{{ withArguments(1,2,3) }}'), 3 );
+      });
+
+      it('should cast arguments as numbers when possible, otherwise strings', function() {
+        var result = null;
+
+        Sentencer.configure({
+          actions: {
+            test: function() {
+              result = Array.prototype.slice.call(arguments);
+            }
+          }
+        });
+
+        Sentencer.make('{{ test(1, hey hello, 2) }}');
+        assert.deepEqual(result, [1, 'hey hello', 2]);
       });
 
       it('should fail silently if an action with arguments does not exist', function() {
         assert.deepEqual( Sentencer.make('{{ nonExistantThing(1,2,3) }}'), '' );
+      });
+
+      it('pass text through if someone tries to exploit eval', function() {
+        assert.deepEqual(
+          Sentencer.make('{{ nothing; console.log("This should not evaluate"); }}'),
+          '{{ nothing; console.log("This should not evaluate"); }}'
+        );
+      });
+
+      it('should pass text through when handed some garbage', function() {
+        assert.deepEqual(
+          Sentencer.make('{{ &@#&(%*@$UU#I$HTRIGUHW$@) }}'),
+          '{{ &@#&(%*@$UU#I$HTRIGUHW$@) }}'
+        );
       });
 
     });
