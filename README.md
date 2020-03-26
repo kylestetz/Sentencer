@@ -145,8 +145,6 @@ console.log( Sentencer.make("I can count to {{ number(8, 10) }}.")
 // "I can count to 8."
 ```
 
-A technical note: if `Sentencer` finds that you have provided arguments to your action it will use `eval` in order to call it. It will `try`/`catch` this in case it fails, but one definite limitation is that your action can't contain characters that would force you to use `object["property"]` notation. For example, `"{{ my-custom-action(3) }}"` would fail, whereas `"{{ my_custom_action(3) }}"` would succeed.
-
 ### Where are the verbs?
 
 Verb pluralization, singularization, and tense modification are difficult computer science problems. `Sentencer` doesn't aim to solve those problems, however _present tense_ verb pluralization/singularization is an experimental feature of [`natural`](https://github.com/NaturalNode/natural) and could be integrated if necessary.
