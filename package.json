@@ -1,6 +1,6 @@
 {
   "name": "sentencer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Sentencer is a string templating engine for madlibs-style sentence generating.",
   "scripts": {
     "start": "node index.js",
