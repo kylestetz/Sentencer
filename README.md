@@ -41,6 +41,27 @@ Sentencer.configure({
   // the list of adjectives to use. Again, Sentencer comes with one!
   adjectiveList: [],
 
+  // additional lists that generate actions for the template engine to use.
+  customLists: [
+    {
+      // add action for animal
+      key: "animal",
+      values: ["dog", "cat", "elephant"],
+      // if named, add action for articlize
+      articlize: "an_animal",
+      // if named, add action for pluralize
+      pluralize: "animals"
+    },
+    {
+        key: "band",
+        values: ["The Beatles", "The Who", "Styx"],
+        // no key or empty value, don't articlize
+        articlize: "",
+        // no key or empty value, don't pluralize
+        pluralize: ""
+    }
+  ],
+
   // additional actions for the template engine to use.
   // you can also redefine the preset actions here if you need to.
   // See the "Add your own actions" section below.
@@ -143,6 +164,29 @@ Sentencer.configure({
 
 console.log( Sentencer.make("I can count to {{ number(8, 10) }}.")
 // "I can count to 8."
+```
+
+### Add your own custom lists
+When configuring `Sentencer` you can provide your own custom lists, which are converted to "actions". The `key` sets the name of the action and the `values` the list of values where one is selected when the action is called. You can also specify a name for the `articlize` and/or `pluralize` actions. These names are referenced within a sentence template.
+
+Here is an example of an animal list that includes options to prefix with an article or to make it plural.
+
+```javascript
+var Sentencer = require('sentencer');
+
+Sentencer.configure({
+  customLists: [
+    {
+        key: "animal",
+        values: ["dog", "cat", "elephant"],
+        articlize: "an_animal",
+        pluralize: "animals"
+    }
+  ],
+});
+
+console.log( Sentencer.make("I saw {{ an_animal }}, 1 {{ animal }}, and 2 {{ animals }}.")
+// "I saw an elephant, 1 dog, and 2 cats."
 ```
 
 ### Where are the verbs?
