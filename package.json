@@ -2,6 +2,10 @@
   "name": "sentencer",
   "version": "0.2.1",
   "description": "Sentencer is a string templating engine for madlibs-style sentence generating.",
+  "homepage": "https://kylestetz.github.io/Sentencer/",
+  "repository": "https://github.com/kylestetz/Sentencer",
+  "bugs": "https://github.com/kylestetz/Sentencer/issues",
+  "license": "MIT",
   "scripts": {
     "start": "node index.js",
     "test": "gulp test"
