@@ -65,32 +65,53 @@ describe('Sentencer:', function() {
       assert(Sentencer.make);
     });
 
+    it('should merge a new custom list', function() {
+      Sentencer.configure({
+        customLists: [
+          {
+            key: "animal",
+            values: ["dog", "cat", "elephant"],
+            articlize: "an_animal", // if named, add action that calls articlize
+            pluralize: "animals"    // if named, add action that calls pluralize
+          }
+        ]
+      });
+
+      assert(Sentencer.actions.animal);
+      assert(Sentencer.actions.an_animal);
+      assert(Sentencer.actions.animals);
+
+      assert.notEqual(["dog", "cat", "elephant"].indexOf(Sentencer.actions.animal()), -1, "missing animal");
+      assert.notEqual(["a dog", "a cat", "an elephant"].indexOf(Sentencer.actions.an_animal()), -1, "missing an_animal");
+      assert.notEqual(["dogs", "cats", "elephants"].indexOf(Sentencer.actions.animals()), -1, "missing animals");
+    });
+
   });
 
   describe('Templating', function() {
 
     describe('# Default Actions', function() {
 
-      it('{{ noun }}', function(){  assert(Sentencer.make('{{ noun }}'));  });
-      it('{{ a_noun }}', function(){  assert(Sentencer.make('{{ a_noun }}'));  });
-      it('{{ nouns }}', function(){  assert(Sentencer.make('{{ nouns }}'));  });
-      it('{{ adjective }}', function(){  assert(Sentencer.make('{{ adjective }}'));  });
-      it('{{ an_adjective }}', function(){  assert(Sentencer.make('{{ an_adjective }}'));  });
+      it('{{ noun }}', function() {  assert(Sentencer.make('{{ noun }}'));  });
+      it('{{ a_noun }}', function() {  assert(Sentencer.make('{{ a_noun }}'));  });
+      it('{{ nouns }}', function() {  assert(Sentencer.make('{{ nouns }}'));  });
+      it('{{ adjective }}', function() {  assert(Sentencer.make('{{ adjective }}'));  });
+      it('{{ an_adjective }}', function() {  assert(Sentencer.make('{{ an_adjective }}'));  });
 
     });
 
     describe('# Custom Actions', function() {
 
-      it('{{ firstNewAction }}', function(){
+      it('{{ firstNewAction }}', function() {
         assert.equal(Sentencer.make('{{ firstNewAction }}'), 'hello');
       });
 
-      it('{{ secondNewAction }}', function(){
+      it('{{ secondNewAction }}', function() {
         assert.equal(Sentencer.make('{{ secondNewAction }}'), 'hello again');
       });
 
-      it('should return {{ action }} if it does not exist', function(){
-        assert.equal( Sentencer.make('{{ nonexistant thing }}'), '{{ nonexistant thing }}');
+      it('should return {{ action }} if it does not exist', function() {
+        assert.equal(Sentencer.make('{{ nonexistant thing }}'), '{{ nonexistant thing }}');
       });
 
     });
@@ -151,6 +172,21 @@ describe('Sentencer:', function() {
 
     });
 
+    describe('# Custom Lists', function() {
+
+      it('{{ animal }}', function() {
+        assert.notEqual(["dog", "cat", "elephant"].indexOf(Sentencer.make('{{ animal }}')), -1, "missing animal");
+      });
+
+      it('{{ an_animal }}', function() {
+        assert.notEqual(["a dog", "a cat", "an elephant"].indexOf(Sentencer.make('{{ an_animal }}')), -1, "missing an_animal");
+      });
+
+      it('{{ animals }}', function() {
+        assert.notEqual(["dogs", "cats", "elephants"].indexOf(Sentencer.make('{{ animals }}')), -1, "missing animals");
+      });
+
+    });
   });
 
   describe('Test Print', function() {
