@@ -55,11 +55,11 @@ Sentencer.prototype.make = function(template) {
   var self = this;
 
   var sentence = template;
-  var occurrences = template.match(/\{\{(.+?)\}\}/g);
+  var occurrences = template.match(/-\{(.+?)\}-/g);
 
   if(occurrences && occurrences.length) {
     for(var i = 0; i < occurrences.length; i++) {
-      var action = occurrences[i].replace('{{', '').replace('}}', '').trim();
+      var action = occurrences[i].replace('-{', '').replace('}-', '').trim();
       var result = '';
       var actionIsFunctionCall = action.match(/^\w+\((.+?)\)$/);
 
