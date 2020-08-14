@@ -1,6 +1,6 @@
 {
   "name": "sentencer",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Sentencer is a string templating engine for madlibs-style sentence generating.",
   "homepage": "https://kylestetz.github.io/Sentencer/",
   "repository": "https://github.com/kylestetz/Sentencer",
@@ -13,7 +13,7 @@
   "dependencies": {
     "articles": "~0.2.1",
     "lodash": "^4.17.11",
-    "natural": "~0.1.28",
+    "natural": "^2.1.5",
     "randy": "~1.5.1"
   },
   "devDependencies": {
@@ -28,6 +28,5 @@
     "madlibs",
     "metaphorpsum"
   ],
-  "author": "Kyle Stetz",
-  "license": "MIT"
+  "author": "Kyle Stetz"
 }
